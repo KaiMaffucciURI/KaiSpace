@@ -1,13 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    <head>
+        <!-- do i have time/need to do anything here? -->
+    </head>
     <body>
-        <img src="./kaispace-banner.png" alt="KaiSpace banner">
         
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyDt1Wz93bzx0IpyV12ilVph3AUtVPnHqGk",
+              authDomain: "profileapp-a8781.firebaseapp.com",
+              databaseURL: "https://profileapp-a8781-default-rtdb.firebaseio.com",
+              projectId: "profileapp-a8781",
+              storageBucket: "profileapp-a8781.appspot.com",
+              messagingSenderId: "909696758312",
+              appId: "1:909696758312:web:be41f69cfa9ce1f616fb1d",
+              measurementId: "G-6DJNKYXM1G"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            //const analytics = getAnalytics(app);
+
+            import {getDatabase, ref, get, set, child, update, remove} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+
+            const db = getDatabase(app);
+
+            var user1img = document.querySelector("#user1img");
+            var user1name = document.querySelector("#user1name");
+            var user1hobby = document.querySelector("#user1hobby");
+            var user1food = document.querySelector("#user1food");
+            var user1animal = document.querySelector("#user1animal");
+
+            var user2img = document.querySelector("#user2img");
+            var user2name = document.querySelector("#user2name");
+            var user2hobby = document.querySelector("#user2hobby");
+            var user2food = document.querySelector("#user2food");
+            var user2animal = document.querySelector("#user2animal");
+
+            //input
+            function getData(user, data, isText) {
+                const dbref = ref(db);
+
+                var userNum;
+                if (user == "O0innDT2ySQJivQTzwGgQlw8FmC2") {
+                    userNum = 1;
+                } else {
+                    userNum = 2;
+                }
+
+                get(child(dbref, user + "/" + data))
+                .then((snapshot)=>{
+                    if (snapshot.exists()) {
+                        // some cursed stuff here with eval 
+                        if (isText) {
+                            eval("user" + userNum + data + ".innerHTML = snapshot.val()");
+                        } else {
+                            const thing = "#user" + userNum + data;
+                            document.querySelector(thing).src = snapshot.val();
+                        }
+                    } else {
+                        alert("No data found");
+                    }
+                })
+                .catch((error)=>{
+                    alert(error)
+                })
+            }
+            // user 1
+            getData("O0innDT2ySQJivQTzwGgQlw8FmC2", "name", true)
+            getData("O0innDT2ySQJivQTzwGgQlw8FmC2", "image", false)
+            getData("O0innDT2ySQJivQTzwGgQlw8FmC2", "hobby", true)
+            getData("O0innDT2ySQJivQTzwGgQlw8FmC2", "food", true)
+            getData("O0innDT2ySQJivQTzwGgQlw8FmC2", "animal", true)
+        
+            //user 2
+            getData("jfxHj7YVdsPy83nceM1QCZ8nbB13", "name", true)
+            getData("jfxHj7YVdsPy83nceM1QCZ8nbB13", "image", false)
+            getData("jfxHj7YVdsPy83nceM1QCZ8nbB13", "hobby", true)
+            getData("jfxHj7YVdsPy83nceM1QCZ8nbB13", "food", true)
+            getData("jfxHj7YVdsPy83nceM1QCZ8nbB13", "animal", true)
+
+          </script>
+
+        <img src="./kaispace-banner.png" alt="KaiSpace banner"> <br></br>
+
         <!-- User 1 -->
+        <h3 id="user1name" type="text"></h3>
+        <img id="user1image" width="300" height="300"></img>
+        <h4>Favorite hobby</h4>
+        <p id="user1hobby" type="text"></p>
+        <h4>Favorite food</h4>
+        <p id="user1food" type="text"></p>
+        <h4>Favorite animal</h4>
+        <p id="user1animal" type="text"></p>
 
         <!-- User 2 -->
+        <img id="user2image" width="300" height="300"></img>
+        <h3 id="user2name" type="text"></h3>
+        <h4>Favorite hobby</h4>
+        <p id="user2hobby" type="text"></p>
+        <h4>Favorite food</h4>
+        <p id="user2food" type="text"></p>
+        <h4>Favorite animal</h4>
+        <p id="user2animal" type="text"></p>
 
-        <!-- Embedded App -->
+        <!-- Embedded App: TODO make it so you can logout in app -->
         <iframe src="https://thunkable.site/w/zLaSNzt5rc7vhgnH27ZFD" title="The KaiSpace App" height = 1000 width = 500></iframe>
     </body> 
 </html>
