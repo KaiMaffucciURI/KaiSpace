@@ -55,6 +55,39 @@
     },
     "children": [
         {
+            "type": "AdMobBanner",
+            "label": "AdMob Banner",
+            "translatedName": "AdMob Banner",
+            "properties": {
+                "Visible": true,
+                "AdUnitID": "ca-app-pub-3940256099942544/6300978111",
+                "AdUnitID_iOS": "ca-app-pub-3940256099942544/6300978111",
+                "TestMode": false,
+                "Width": 375,
+                "Height": 32,
+                "X": 0,
+                "ParentId": "7900148d-d8f2-4240-953b-54f4ffd7d5df",
+                "Y": 20.75,
+                "RelativeX": 0,
+                "RelativeY": 20,
+                "position": "absolute",
+                "edgeOffsets": {
+                    "left": "7.120003255208333%",
+                    "top": "3.110944527736132%"
+                },
+                "style": {
+                    "position": "absolute",
+                    "left": "7.120003255208333%",
+                    "top": "3.110944527736132%",
+                    "display": "flex"
+                }
+            },
+            "children": [],
+            "id": "90b09c63-fe55-4e0f-bec8-8c2cca77d3c3",
+            "thunkableVersion": 423,
+            "name": "AdMob_Banner1"
+        },
+        {
             "type": "Image",
             "translatedName": "Image",
             "properties": {
